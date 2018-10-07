@@ -1,10 +1,11 @@
 import speedtest
 from openpyxl import Workbook
 
-servers = [11082,8156,6085,9903,6342,2552,5774,9174,11430,2428,11194,10308,7215,9594,16873,
+servers = [11082,8156,6085,9903,6342,2552,5774,9174,11430,2428,11194,10308,7215,16873,
 19294,19060,6106,9994,12473,9331,12635,8158,18250,8491,15324,2515,3381,16749,9668,11342]
 def getInfoFromServer(server):
     array = [server]
+    print server
     obj = {}
     s = speedtest.Speedtest()
     s.get_servers(array)
@@ -41,7 +42,11 @@ def getInfoFromServer(server):
 client_info = {}
 datas = []
 for server in servers:
-    getInfoFromServer(server)
+    try:
+        getInfoFromServer(server)
+    except:
+        print "This is an error message!"
+        continue
     pass
 
 wb = Workbook()
